@@ -16,8 +16,7 @@ An alternative approach would be to have the server build complete web-pages inc
 # Uitleg hoe je de webshop kunt aanpassen 
 
 ## Server opnieuw starten
-__Codespaces__ <br>
-Gebruik het terminal window te zien zijn.<br>
+Gebruik het terminal window van Gitpod of Codespaces.<br>
 Stop de server door typen van [CRTL]+[C].<br>
 Start de server met het volgene commando.<br>
 ```
@@ -25,16 +24,6 @@ bash start.sh
 ```
 Om de server te (her)starten kun je ook de start knop gebruiken die je ziet als je op het "run en debug" icoon in de iconenbalk links op het scherm drukt.
 
-__Replit__<br>
-druk op de groene "Run"-knop<br>
-
-__Gitpod__<br>
-Gebruik het terminal window waar de server-berichten te zien zijn.
-Stop de server door typen van [CRTL]+[C].<br>
-Start de server met het volgene commando
-```
-bash start.sh
-```
 ## Wijzigingen aanbrengen in de database
 Wijzig de sql-commando's in het bestand db/create.sql<br>
 Start de server opnieuw (zie elders hoe dat moet) nadat de sql-commando's gewijzigd zijn. Zo zorg je ervoor dat de database opnieuw gemaakt wordt door de nieuwe sql-commando's uit te voeren.
@@ -55,11 +44,10 @@ Meer handige commando's:<br>
 
 ## Fouten zoeken in de api
 Je kunt het antwoord van de api testen door achter de link naar je webshop /api/products te typen, bijvoorbeeld:<br>
-`https://....-8080.app.github.dev/api/products` (voor codespaces, pas aan voor jouw webshop-adres)<br>
-`https://....repl.co/api/products` (voor replit, pas aan voor jouw webshop-adres)<br>
-`https://....gitpod.io/api/products` (voor gitpod, pas aan voor jouw webshop-adres)
+`https://....gitpod.io/api/products` (voor gitpod, pas aan voor jouw webshop-adres)<br>
+`https://....-8080.app.github.dev/api/products` (voor codespaces, pas aan voor jouw webshop-adres)
 
-Bekijk de terminal (codespaces en gitpod) of console (replit) van de server, daar kun je foutmeldingen zien.
+Bekijk de terminal van de server, daar kun je foutmeldingen zien.
 Je kunt in de code in de map api opdrachten toevoegen die inhoud van variabelen afdrukken. Bijvoorbeeld:
 ```
 console.log("Waarde van i is ", i);
@@ -78,8 +66,10 @@ Als de console open staat dan stopt de browser met het uitvoeren van code als hi
 console.log("Waarde van i is ", i);
 ```
 
-## Mail configureren in Replit
-__er zijn afgelopen jaar dingen in replit veranderd, waardoor je je webshop op dit moment geen mail kunt laten sturen__
+## Mail configureren
+
+__Het is op dit moment niet mogelijk om de webshop mail te laten sturen. Voor het sturen van mail werd Replit gebruikt. Replit heeft zijn aanbod aangepast. __
+
 De shop mailt elke order die geplaatst is.
 Mailen werkt niet in gitpod, omdat verkeer over de smtp-port geblokkeerd wordt.
 Mailen door de shop in replit werkt als volgt.
@@ -117,15 +107,14 @@ Dit bestand bevat de commando's om de webshop (opnieuw) te starten. Je voert dit
 bash start.sh
 ```
 
-## .devcontainer en .vscode folder
+## .devcontainer 
 Mappen met de configuratie voor Codespaces
-
-## .replit en replit.nix
-Bestanden met de configuratie voor replit<br>
-We use a bash-repl (language="bash" in .replit file), because bash has sqlite3 and nodejs installed. Downside of bash-repl: The nodejs-repl installs packages automatically by scanning your code. In the bash-repl we have to maintain dependencies in a packages file manually. 
 
 ## .gitpod.yml
 Bestand met de configuratie voor replit<br>
+
+## .vscode folder
+Map met de configuratie voor de editor VS Code die wordt gebruikt door Gitpod en Codespaces
 
 # Uitleg van code
 De code is voorzien van commentaar op punten waar de werking misschien niet eenvoudig te volgen is.
@@ -154,18 +143,8 @@ Dit wordt bijvoorbeeld gebruikt bij het tonen van artikelen in de shop.
 
 # Vraag en antwoord
 
-## port forwarden met Codespaces
-Op school zit er een fout in het netwerk, gebruik daar dit trucje om de port naar de server te openen:
-
-- Knip de link van je Codespace boven in je browser naar een nieuw tabblad (de link lijkt op https://xxxxxx-xxxxxx-xxxxxx.github.dev)
-- Verander de link in https://xxxxxx-xxxxxx-xxxxxx-8080.app.github.dev (dus voeg -8080.app toe)
-- Je ziet nu de webpagina die je in je codespace gemaakt hebt. Vergeet niet de server te starten.
-    
-## Letop als je replit gebruikt!
-1. Als je de repo importeert in replit, dan moet je de taal "bash" kiezen.
-Dit kies je nadat je de link naar de repo hebt opgeven en voordat je op de import knop drukt.
-2. Het voorbeeld van je webshop in Webview toont geen artikelen.
-Open het voorbeeld in een apart tab (klik in Webview op icoontje met vierkant en pijl).
+## Codespace meldt "Oh no, it looks like you're offline"
+Op sommige scholen blokkeert de firewall het gebruik van Codespaces. Dit is een instelling die alleen door de firewall beheerder kan worden aangepast. Tijdelijke oplossing: Verbind via een hotspot van je mobiel.
 
 # Documentatie 
 
