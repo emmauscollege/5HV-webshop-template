@@ -2,3 +2,4 @@ node_modules
 db/my.db
 scripts/srv/pid
 scripts/srv/data/shop.dump
+yarn.lock
