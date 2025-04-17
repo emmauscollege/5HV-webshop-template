@@ -16,9 +16,12 @@
 			"onAutoForward": "openBrowser"
 		}
 	},
+	// Configure tool-specific properties.
 	"customizations": {
+		// Configure properties specific to VS Code.
 		"vscode": {
 			"extensions": [
+				"mathematic.vscode-pdf", // add viewer for pdf-files (this one supports vscode-web)
 				"ms-vsliveshare.vsliveshare", // add google-docs like typing in same file, click on live-share button in left icon pane
 				"mhutchie.git-graph" // add graphical viewer for branches and commits, click on button in Source-Code tab
 			]

@@ -1,11 +1,19 @@
 {
-    "git.useEditorAsCommitInput": false, // prevent editor looking like continouosly busy after committing with an empty message
+    "git.useEditorAsCommitInput": false, // prevent editor looking like continously busy after committing with an empty message
     "git.confirmSync": false, // disable pop-up with confirmation questions after click on synchronise
     "git.enableSmartCommit": true, // stage all changes when none of the changes are stages, instead of showing pop-up with a warning
+    "git.postCommitCommand": "sync", // sync automatically after each commit, prevents forgetting push to github after commit
     "git.rebaseWhenSync": true, // leads to easier flow for students in case of conflicting commits
-    "git.postCommitCommand": "sync", // sync automatically after each commit
     "git.mergeEditor": true, // open merge-editor for files under conflict
     "git.autofetch": true, // autofetch (fetch means count, not read) changes from github periodically
     "git.autofetchPeriod": 60, // autofetch period 60 seconds
-    "merge-conflict.autoNavigateNextConflict.enabled": true // auto navigate to next merge conflict after resolving one
-}
+    "merge-conflict.autoNavigateNextConflict.enabled": true, // auto navigate to next merge conflict after resolving one
+  
+    //"files.exclude": { // hide files in vscode
+    //  ".*": true,
+    //  "LICENSE": true,
+    //  "package.json": true,
+    //  "yarn.lock": true,
+    //}
+  }
+  

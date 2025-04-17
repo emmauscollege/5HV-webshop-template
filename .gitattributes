@@ -1,8 +1,0 @@
-# this fixes replit auto-detect language for this repo
-# replit auto-detect language is based on github statistics
-# exclude directories in github statistics
-web/** linguist-vendored
-db/** linguist-vendored
-api/** linguist-vendored
-# now Shell (bash) should be detected as primary language by replit when importing this repo
-# when the language detection is still wrong, you can change it manually during the import of the repo in replit

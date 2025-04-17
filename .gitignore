@@ -1,5 +1,12 @@
-node_modules
+# list of files which are not pushed to github
+
+# logfile of webserver
+.nohup_webserver.out
+# database created by create.sql
 db/my.db
+
+# other stuff
+node_modules
 scripts/srv/pid
 scripts/srv/data/shop.dump
 yarn.lock
