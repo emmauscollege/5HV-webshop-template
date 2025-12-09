@@ -4,7 +4,10 @@
     // configure image
 	"image": "mcr.microsoft.com/devcontainers/universal:2",
     // install dependencies from package.json
-	"onCreateCommand": "yarn install", 
+	"onCreateCommand": "yarn install",
+
+	// has to be set to handle merge conflicts properly
+	"postCreateCommand": "git config --global pull.rebase false",
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
