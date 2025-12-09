@@ -22,7 +22,7 @@ Start de server met het volgene commando.<br>
 ```
 bash start.sh
 ```
-Om de server te (her)starten kun je ook de start knop gebruiken die je ziet als je op het "run en debug" icoon in de iconenbalk links op het scherm drukt.
+Om de server te (her)starten kun je ook de start knop "Bouw DB & Start API" gebruiken, in de balk onderin het scherm.
 
 ## Wijzigingen aanbrengen in de database
 Wijzig de sql-commando's in het bestand db/create.sql<br>
@@ -44,7 +44,6 @@ Meer handige commando's:<br>
 
 ## Fouten zoeken in de api
 Je kunt het antwoord van de api testen door achter de link naar je webshop /api/products te typen, bijvoorbeeld:<br>
-`https://....gitpod.io/api/products` (voor gitpod, pas aan voor jouw webshop-adres)<br>
 `https://....-8080.app.github.dev/api/products` (voor codespaces, pas aan voor jouw webshop-adres)
 
 Bekijk de terminal van de server, daar kun je foutmeldingen zien.

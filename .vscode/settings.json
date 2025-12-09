@@ -11,9 +11,11 @@
   
     "files.exclude": { // hide files in vscode
       ".*": true,
+      "LICENSE": true,
+      "package.json": true,
+      "yarn.lock": true,
+      "node_modules": true,
     },
-
-    "tasks.showTasksInStatusBar": "always",
 
     "editor.tabSize": 2,
     "editor.insertSpaces": true,

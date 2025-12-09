@@ -7,7 +7,7 @@
 	"onCreateCommand": "yarn install",
 
 	// has to be set to handle merge conflicts properly
-	"postCreateCommand": "git config --global pull.rebase false",
+	"postCreateCommand": "echo '.headers on\n.mode column' > ~/.sqliterc && git config --global pull.rebase false",
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
@@ -26,8 +26,9 @@
 			"extensions": [
 				"mathematic.vscode-pdf", // add viewer for pdf-files (this one supports vscode-web)
 				"ms-vsliveshare.vsliveshare", // add google-docs like typing in same file, click on live-share button in left icon pane
-				"mhutchie.git-graph" // add graphical viewer for branches and commits, click on button in Source-Code tab
-			]
+				"mhutchie.git-graph", // add graphical viewer for branches and commits, click on button in Source-Code tab
+			  "actboy168.tasks"
+      ]
 		}
 	}
 }
