@@ -40,7 +40,7 @@
           <template id="productrow">
           <div class="card product product_row">
             <div class="card-header">
-              <ximg class="product_image" width="30">
+              <img class="product_image" width="30">
               <span class="product_name"></span>
             </div>
             <div class="card-body">
@@ -141,11 +141,11 @@
         <div class="container" id="checkout_status">
              <template id="checkout_success">
                <div class="alert alert-success"> 
-                 Je bestelling is geplaatst en een bevestigingsmail is verzonden.<br>
+                 Je bestelling is geplaatst.<br>
                  Je ordernummer is <span class="checkout_ordernumber"></span> 
                </div>
              </template>
-             <template id="checkout_failes">
+             <template id="checkout_failed">
                <div class="alert alert-danger">
                  Je bestelling kon niet worden geplaatst, neem contact op met de shop<br>
                  Foutmelding:<br>
@@ -186,7 +186,7 @@
         const basket = readBasket()
 
         // voeg alle producten uit de winkelwagen toe aan webpagina
-        for (id in basket) { // herhaal voor alle producten in de winkelmand
+        for (let id in basket) { // herhaal voor alle producten in de winkelmand
           const amount = basket[id]
           const product = JSON.parse(localStorage.getItem(`item_${id}`))
           const clone = template.content.cloneNode(true)
@@ -224,7 +224,7 @@
       }
       // add product_id and and product_amount to params
       const basket = readBasket()
-      for (id in basket) { // herhaal voor alle producten in de winkelmand
+      for (let id in basket) { // herhaal voor alle producten in de winkelmand
           const amount = basket[id]
           const product = JSON.parse(localStorage.getItem(`item_${id}`))
           //productIds.push(id)

@@ -75,7 +75,7 @@ function removeCompletelyFromBasket(product, rowEl) {
   localStorage.setItem('basket', JSON.stringify(basket))
   localStorage.removeItem(`item_${product.id}`)
   if(rowEl) {
-    showEl.remove()
+    rowEl.remove()
   }
 }
 

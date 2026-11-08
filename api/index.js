@@ -80,70 +80,12 @@ function getProductById(request, response) {
   const product_id = parseInt(request.params.id)
   const sqlOpdracht = db.prepare('SELECT products.id AS id, products.name AS name, products.description AS description, products.code AS code, products.price AS price FROM products WHERE id = ?')
   data = sqlOpdracht.all(product_id)
-  response.status(200).json(data[0])
+  if (data.length == 0) {
+    response.status(404).json({ errorMessage: 'Product niet gevonden' })
+  } else {
+    response.status(200).json(data[0])
+  }
 }
-
-/*
-const getRelatedProductsById = (request, response) => {
-  const id = parseInt(request.params.id)
-  // TODO: change query to return related products
-  // it now return an array with the current products
-  pool.query('SELECT * FROM products WHERE id = $1', [id], (error, results) => {
-    if (error) {
-      console.log(error)
-      response.status(500).json("oops")
-    } else {
-      response.status(200).json(results.rows)
-    }
-  })
-}
-
-const createProduct = (request, response) => {
-  const { name, email } = request.body
-
-  pool.query('INSERT INTO products (name, email) VALUES ($1, $2)', [name, email], (error, _results) => {
-    if (error) {
-      console.log(error)
-      response.status(500).json("oops")
-    } else {
-      response.status(201).json(`Product added with ID: ${result.insertId}`)
-    }
-  })
-}
-
-const updateProduct = (request, response) => {
-  const id = parseInt(request.params.id)
-  const { name, email } = request.body
-
-  // Note: query is not correct
-  pool.query(
-    'UPDATE products SET name = $1, email = $2 WHERE id = $3',
-    [name, email, id],
-    (error, _results) => {
-      if (error) {
-        console.log(error)
-        response.status(500).json("oops")
-      } else {
-        response.status(200).send(`Product modified with ID: ${id}`)
-      }
-    }
-  )
-}
-
-const deleteProduct = (request, response) => {
-  const id = parseInt(request.params.id)
-
-  pool.query('DELETE FROM products WHERE id = $1', [id], (error, _results) => {
-    if (error) {
-      console.log(error)
-      response.status(500).json("oops")
-    } else {
-      response.status(200).send(`Product deleted with ID: ${id}`)
-    }
-  })
-}
-*/
-
 
 // ---------------------------------
 // email bestelling
@@ -170,7 +112,7 @@ function checkoutOrder(request, response) {
 
   // order id maken: date + random number
   var today = new Date();
-  const orderId = today.getFullYear() + '/' + today.getMonth() + '/' + today.getDate() + '-' + String(Math.floor(Math.random() * 1000))
+  const orderId = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate() + '-' + String(Math.floor(Math.random() * 1000))
 
   // maak tabel met info uit database over producten uit winkelmand
   var totaalBedrag = 0;
@@ -179,12 +121,12 @@ function checkoutOrder(request, response) {
   for (let i in productIds) { // herhaal voor elke index van productIds[]
     let id = productIds[i]
     const sqlOpdracht = db.prepare('SELECT * FROM products WHERE id = ?')
-    row = sqlOpdracht.get(id)
+    const row = sqlOpdracht.get(id)
     let aantalMaalPrijs = productAmounts[i] * row.price
-    articleTable += `<tr><td>${row.id}<tr><td>${row.code}</td><td>${row.name}</td><td>€ ${row.price.toFixed(2)}</td><td>${productAmounts[i]}</td><td>€ ${aantalMaalPrijs}</td></tr>`
+    articleTable += `<tr><td>${row.id}</td><td>${row.code}</td><td>${row.name}</td><td>€ ${row.price.toFixed(2)}</td><td>${productAmounts[i]}</td><td>€ ${aantalMaalPrijs.toFixed(2)}</td></tr>`
     totaalBedrag += aantalMaalPrijs
   }
-  articleTable += `<tr><td colspan="5">Totaal</td><td>€ ${totaalBedrag.toFixed(2)}</td><tr>`
+  articleTable += `<tr><td colspan="5">Totaal</td><td>€ ${totaalBedrag.toFixed(2)}</td></tr>`
   articleTable += "</table>"
 
   // maak inhoud van mailbericht
@@ -204,16 +146,12 @@ function checkoutOrder(request, response) {
   // check mailconfig en verstuur mail
   if (mailConfigOK()) {
     sendMail('Bevestiging van bestelling', body, email)
-    // note: mailer is async, so technically it has not been send yet 
-    // if an error occurs during sending of the mail, 
-    // the user gets an okee, but the error is dumped in console.log
-    response.status(200).send({ orderId })
   } else {
-    const errorMessage = "Error: environment variables GMAIL_EMAIL, GMAIL_PASSWORD or ORDER_MAIL_TO not configured"
-    console.log(errorMessage)
-    response.status(500).send({ errorMessage });
+    console.log("Geen mail verstuurd: GMAIL_EMAIL, GMAIL_PASSWORD of ORDER_MAIL_TO niet ingesteld")
+    console.log(body)
   }
 
+  response.status(200).send({ orderId })
 }
 
 // --------------------------
